@@ -1,9 +1,6 @@
 /** @format */
 import React from "react";
 import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getContacts } from "redux/selectors";
-// import phonebookActions from "redux/actions";
 import s from "styles/form.module.css";
 import styles from "styles/input.module.css";
 import style from "styles/button.module.css";
@@ -13,9 +10,6 @@ export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [createContact, { isLoading }] = useCreateContactsMutation();
-  // const dispatch = useDispatch();
-  // const contacts = useSelector(getContacts);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     console.log({ name, value });
@@ -34,13 +28,7 @@ export default function ContactForm() {
   const handleSubmit = (e) => {
     console.log(e.target.value);
     e.preventDefault();
-    // if (contacts.find((contact) => contact.name === name)) {
-    //   alert(`${name} is already in contacts`);
-    //   return;
-    // }
     createContact({ name, number });
-
-    // dispatch(phonebookActions.addContact({ name, number }));
     reset();
   };
   const reset = () => {

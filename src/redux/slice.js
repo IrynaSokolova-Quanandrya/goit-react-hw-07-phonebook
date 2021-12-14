@@ -8,7 +8,7 @@ export const contactApi = createApi({
   tagTypes: ["Contact"],
   endpoints: (builder) => ({
     getContacts: builder.query({
-      query: () => "/contacts",
+      query: () => "contacts",
       providesTags: ["Contact"],
     }),
     deleteContact: builder.mutation({
@@ -26,6 +26,10 @@ export const contactApi = createApi({
       }),
       invalidatesTags: ["Contact"],
     }),
+    getFilteredContacts: builder.mutation({
+      query: (value) => `contacts/${value}`,
+    }),
+    invalidatesTags: ["Contact"],
   }),
 });
 
@@ -33,4 +37,6 @@ export const {
   useGetContactsQuery,
   useDeleteContactMutation,
   useCreateContactsMutation,
+  useGetFilteredContactsMutation,
 } = contactApi;
+// console.log(useGetFilteredContactsMutation);
