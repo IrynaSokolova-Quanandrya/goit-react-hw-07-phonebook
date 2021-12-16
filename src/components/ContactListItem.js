@@ -1,4 +1,5 @@
 import { useDeleteContactMutation } from "redux/slice";
+import PropTypes from "prop-types";
 import styles from "styles/button.module.css";
 import s from "styles/contactList.module.css";
 
@@ -18,3 +19,9 @@ export default function ContactListItem({ id, name, phone }) {
     </li>
   );
 }
+
+ContactListItem.prototype = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  phone: PropTypes.number.isRequired,
+};

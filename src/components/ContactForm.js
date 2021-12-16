@@ -8,17 +8,19 @@ import { useCreateContactsMutation } from "redux/slice";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [phone, setPhone] = useState("");
+
   const [createContact, { isLoading }] = useCreateContactsMutation();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value });
+
     switch (name) {
       case "name":
         setName(value);
         break;
-      case "number":
-        setNumber(value);
+      case "phone":
+        setPhone(value);
         break;
       default:
         return;
@@ -26,14 +28,13 @@ export default function ContactForm() {
   };
 
   const handleSubmit = (e) => {
-    console.log(e.target.value);
     e.preventDefault();
-    createContact({ name, number });
+    createContact({ name, phone });
     reset();
   };
   const reset = () => {
     setName("");
-    setNumber("");
+    setPhone("");
   };
   return (
     <form className={s.form} onSubmit={handleSubmit}>
@@ -50,12 +51,12 @@ export default function ContactForm() {
         />
       </label>
       <label className={styles.label}>
-        Number
+        Phone
         <input
-          value={number}
+          value={phone}
           onChange={handleChange}
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
